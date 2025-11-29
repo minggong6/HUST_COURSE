@@ -7,5 +7,6 @@
    :maxdepth: 2
    :caption: 课程目录
 
-   computer_science/index
-   math/index
+   微积分/index
+   线性代数/index
+   操作系统/index
