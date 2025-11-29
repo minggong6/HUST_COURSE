@@ -1,4 +1,4 @@
-数学课程
+数学类课程
 ==========
 
 .. toctree::
@@ -6,3 +6,5 @@
    :caption: 专业核心课
 
    complex_analysis
+   caulculus
+   linear_algebra
