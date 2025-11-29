@@ -9,5 +9,6 @@
    :maxdepth: 2
    :caption: 课程目录
 
-   computer_science/index
    math/index
+   computer_science/index
+   
