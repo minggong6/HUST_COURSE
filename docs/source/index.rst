@@ -9,7 +9,7 @@
    :maxdepth: 3
    :caption: 课程目录
 
-   math/index
+
    computer_science/index
    electricity/index
-   
+   mathmatics/index
