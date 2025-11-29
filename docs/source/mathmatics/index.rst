@@ -2,7 +2,7 @@
 ==========
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: 专业核心课
 
    complex_analysis
