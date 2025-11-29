@@ -17,8 +17,11 @@
 * :download:`复变串讲ppt <../../复变函数/复变练习册答案合集.pdf>`
 **往年试卷：**
 * `17年试卷 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2017.pdf>`_
+
 * `17年试卷 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2017.pdf>`_
+
 * `17年答案 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2017答案.pdf>`_
+
 * `18年试卷 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2018.pdf>`_
 * `18年答案 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2018答案.pdf>`_
 * `19年试卷 <https://raw.githubusercontent.com/minggong6/HUST_COURSE/main/复变函数/真题及解答/2019.pdf>`_
