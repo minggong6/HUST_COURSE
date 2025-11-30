@@ -9,7 +9,15 @@
    :target: https://github.com/minggong6/HUST_COURSE/fork
    :alt: GitHub forks
 
-|star| |fork|
+.. |issues| image:: https://img.shields.io/github/issues/minggong6/HUST_COURSE?style=social
+   :target: https://github.com/minggong6/HUST_COURSE/issues
+   :alt: GitHub issues
+
+.. |discussions| image:: https://img.shields.io/github/discussions/minggong6/HUST_COURSE?style=social
+   :target: https://github.com/minggong6/HUST_COURSE/discussions
+   :alt: GitHub discussions
+
+|star| |fork| |issues| |discussions|
 
 “我们希望只要前人走过的路，后人就不必再走。"
 
@@ -21,6 +29,9 @@
 
 现在只是完成了框架搭建，但是内容尚未填写完毕，欢迎大家 **Fork**这个项目，添加你所掌握的课程资料，提交 **Pull Request**，让更多的同学受益！
 具体的贡献方式请参考 `README <https://github.com/minggong6/HUST_COURSE/blob/main/README.md>`_
+
+- 🐛 **遇到问题？** 请在 `Issues <https://github.com/minggong6/HUST_COURSE/issues>`_ 中反馈。
+- 💬 **想聊聊？** 欢迎来 `Discussions <https://github.com/minggong6/HUST_COURSE/discussions>`_ 交流心得。
 
 在这里收集了历年试卷、复习资料和学长学姐的考试经验。
 
