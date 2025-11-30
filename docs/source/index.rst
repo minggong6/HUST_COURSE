@@ -45,6 +45,7 @@
    :caption: 课程目录
 
    
+   guidebook/index
    mathmatics/index
    science/index
    open_courses/index
@@ -53,3 +54,4 @@
    professional_elective/index
    electrical/index
    information/index
+   
