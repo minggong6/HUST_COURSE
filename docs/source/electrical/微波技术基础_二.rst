@@ -29,5 +29,7 @@
 
 复习资料
 --------
+
+`本课程 GitHub 仓库文件 <https://github.com/minggong6/HUST_COURSE/tree/main/微波实验>`_
 * `外部链接：学长整理的思维导图 (GitHub) <https://github.com/xxxx>`_
 * :download:`课堂PPT合集 (ZIP) <../../downloads/xxx.zip>`
