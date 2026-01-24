@@ -2,6 +2,8 @@
 ======================
 数电实验操作考试和平时实验指南 <https://hustdian.feishu.cn/wiki/KxoFw41GXiYhs1kSHNQc1jcunId>
 
+verilog代码仓库，感谢uu支持 <https://github.com/luuton/DigitalElectronicsLab>
+
 数电实验笔试指南  <https://hustdian.feishu.cn/wiki/WNO6wrpHdiKrQekyHkYcgzrQnsh>
 
 课程评价

@@ -33,7 +33,7 @@
 - 💬 **想聊聊？** 欢迎来 `Discussions <https://hustdian.feishu.cn/wiki/K2w0w446CiEbpVksQdOcoFJLnbe?from=from_copylink>`_ 交流心得。
 
 
-在这里收集了历年试卷、复习资料和学长学姐的考试经验。
+在这里收集了历年试卷、复习资料和学长学姐的考试经验。蓝色字体可直达链接，飞书链接给予补充说明，许多内容需要点开链接查看
 
 最后欢迎点个小小的star⭐，这对我来说是莫大的鼓励！
 
@@ -41,6 +41,17 @@
    完成了[‘复变函数’，'C语言', '信号与系统', '关于保研', '关于考研', '培养计划', '复变函数', '多媒体搜索', '天线与电波传播', '工程制图', '微机原理', '微波实验', '操作系统', '数字信号处理', '数据挖掘', '数电实验', '本科毕业设计', '机器学习导论', '模电实验', '热工基础', '知识产权法律基础', '计算机网络', '计算机视觉', '通信原理实验', '通信电子线路']的整理
 
 感谢所有提供帮助的朋友们，万分感动仍有许多人支持我这个小同学,预告后期会有一个很大平台，来完成课程共享的计划，感谢各位
+
+一些友情链接，感谢ryc,tzt、yuejing,TarferSoul、Shinehale等大佬的无私分享
+
+----------------
+
+* `TarferSoul 的大二上课程资料 <https://github.com/TarferSoul/Second-semester-of-sophomore-year>`_
+* `1363033313 的大二下课程资料 <https://github.com/1363033313/Second-year-down>`_
+* `awesome-HUST-EIC (Shinehale) <https://github.com/Shinehale/awesome-HUST-EIC>`_
+* `1363033313 的大二上课程资料 <https://github.com/1363033313/Second-year-up>`_
+* `1363033313 的大一下课程资料 <https://github.com/1363033313/First-year-down>`_
+* `1363033313 的大一上课程资料 <https://github.com/1363033313/First-semester-of-freshman-year>`_
 
 .. toctree::
    :maxdepth: 2
