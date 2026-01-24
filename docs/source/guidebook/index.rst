@@ -8,7 +8,4 @@
    :caption: 指南目录
 
    faq
-   resources 
-
-
-
+   resources
