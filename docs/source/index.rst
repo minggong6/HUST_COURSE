@@ -32,7 +32,6 @@
 
 - 💬 **想聊聊？** 欢迎来 `Discussions <https://hustdian.feishu.cn/wiki/K2w0w446CiEbpVksQdOcoFJLnbe?from=from_copylink>`_ 交流心得。
 
-
 在这里收集了历年试卷、复习资料和学长学姐的考试经验。蓝色字体可直达链接，飞书链接给予补充说明，许多内容需要点开链接查看
 
 最后欢迎点个小小的star⭐，这对我来说是莫大的鼓励！
@@ -46,7 +45,7 @@
 
 ----------------
 
-* `TarferSoul 的大二上课程资料 <https://github.com/TarferSoul/Second-semester-of-sophomore-year>`_
+* `TarferSoul 的大二下课程资料 <https://github.com/TarferSoul/Second-semester-of-sophomore-year>`_
 * `1363033313 的大二下课程资料 <https://github.com/1363033313/Second-year-down>`_
 * `awesome-HUST-EIC (Shinehale) <https://github.com/Shinehale/awesome-HUST-EIC>`_
 * `1363033313 的大二上课程资料 <https://github.com/1363033313/Second-year-up>`_
