@@ -1,8 +1,6 @@
 信号与线性系统_二
 ======================
-`课程主页 <https://hustdian.feishu.cn/wiki/MqZ2w1ShuilimwkJGYNc9mNUnjd>`_
-课程评价
---------
+自己写的课程主页包括平时作业，备考策略，作业真题等 <https://hustdian.feishu.cn/wiki/MqZ2w1ShuilimwkJGYNc9mNUnjd>
 复习资料
 --------
 `本课程 GitHub 仓库文件 <https://github.com/minggong6/HUST_COURSE/tree/main/信号与系统>`_

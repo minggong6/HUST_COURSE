@@ -1,8 +1,9 @@
 电子线路设计_测试及实验_二
 ======================
-`数电实验操作考试和平时实验指南 <https://hustdian.feishu.cn/wiki/KxoFw41GXiYhs1kSHNQc1jcunId>`_
+数电实验操作考试和平时实验指南 <https://hustdian.feishu.cn/wiki/KxoFw41GXiYhs1kSHNQc1jcunId>
 
-`数电实验笔试指南  <https://hustdian.feishu.cn/wiki/WNO6wrpHdiKrQekyHkYcgzrQnsh>`_
+数电实验笔试指南  <https://hustdian.feishu.cn/wiki/WNO6wrpHdiKrQekyHkYcgzrQnsh>
+
 课程评价
 --------
 难度不大，参考小红书momo学姐，和我的资料即可
