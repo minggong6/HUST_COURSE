@@ -1,0 +1,1119 @@
+\special{dvipdfmx:config z 0}
+%\documentclass{cumcmthesis}
+\documentclass[withoutpreface,bwprint]{cumcmthesis} %去掉封面与编号页，电子版提交的时候使用。
+
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{url}   % 网页链接
+\usepackage{subcaption} % 子标题
+\usepackage{float}
+\usepackage{tabularray}
+\usepackage{extarrows}
+\title{\Huge{电磁场与电磁波\ 公式表}}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    \begin{Large}
+        作者：廖兴易（那就做一片星云吧）\quad 电信卓越2301班
+
+        \today
+    \end{Large}
+\end{center}
+
+\begin{abstract}
+    本文系统梳理了《电磁场与电磁波》课程的核心理论体系与关键公式，涵盖了矢量分析与场论基础、静态电磁场、时变电磁场、均匀平面电磁波在各类介质中的传播特性等内容。
+    
+    文档重点阐述了Maxwell方程组、电磁场边界条件、坡印廷矢量与坡印廷定理、时变电磁场物理量与物理定律的复数描述、均匀平面电磁波的传播，并对均匀平面波的极化、反射、折射、衰减及色散等现象进行了详细分析。
+    
+    通过结构化的归纳与公式整理，本文为电磁场与电磁波的理论学习与工程应用提供了清晰的参考资料，适用于相关专业的课程复习与知识速查。
+
+    \keywords{\TeX{}\quad 期末复习\quad 电磁场与电磁波\quad 电子信息与通信\quad 华中科技大学\quad 公式}
+\end{abstract}
+
+\begin{center}
+    \tableofcontents
+\end{center}
+
+\newpage 
+
+\section{矢量分析与场论初步}
+
+\subsection{标量场的方向导数与梯度}
+
+标量场$f = f(x, y, z)$在某一点处的的梯度：
+\begin{align}
+    \boldsymbol{G} = \nabla f = \frac{\partial f}{\partial x}\boldsymbol{e_x} + \frac{\partial f}{\partial y}\boldsymbol{e_y} + \frac{\partial f}{\partial z}\boldsymbol{e_z}
+\end{align}
+
+标量场$f = f(x, y, z)$在某一点处沿$\boldsymbol {e_l} = (\cos \alpha, \cos \beta, \cos \gamma)$的方向导数：
+\begin{align}
+    \frac{df}{d\boldsymbol{l}} = \boldsymbol{G} \cdot \boldsymbol {e_l} = \frac{\partial f}{\partial x}\cos \alpha + \frac{\partial f}{\partial y}\cos \beta + \frac{\partial f}{\partial z}\cos \gamma
+\end{align}
+
+\subsection{矢量场的通量、散度、散度定理}
+
+微小面元矢量：
+\begin{align}
+    d \boldsymbol{S} = \boldsymbol{e_n} dS
+\end{align}
+
+矢量场$\boldsymbol{A} = \boldsymbol{A}(x, y, z)$穿过微小面元$d \boldsymbol{S}$的通量：
+\begin{align}
+    \boldsymbol{A} \cdot d \boldsymbol{S} = A \cos \theta dS
+\end{align}
+
+矢量场$\boldsymbol{A} = \boldsymbol{A}(x, y, z)$在某一点处的散度：
+\begin{align}
+    div \boldsymbol{A} = \nabla \cdot \boldsymbol{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}
+\end{align}
+
+高斯散度定理：
+\begin{align}
+\oint_S \boldsymbol{A} \cdot d \boldsymbol{S} = \int_V \nabla \cdot \boldsymbol{A} dV
+\end{align}
+
+\subsection{矢量场的环量、旋度、斯托克斯定理}
+
+矢量场$\boldsymbol{A} = \boldsymbol{A}(x, y, z)$沿某一闭合曲线的环量：
+\begin{align}
+    \oint_C \boldsymbol{A} \cdot d\boldsymbol{l} = \oint_C A dl \cos \theta
+\end{align}
+
+矢量场$\boldsymbol{A} = \boldsymbol{A}(x, y, z)$在某一点处沿法向量是$\boldsymbol{e_n}$的微元闭合曲线的环量面密度：
+\begin{align}
+    rot_n \boldsymbol{A} = rot \boldsymbol{A} \cdot \boldsymbol{e_n}
+\end{align}
+
+矢量场$\boldsymbol{A} = \boldsymbol{A}(x, y, z)$在某一点处的旋度：
+\begin{align}
+    rot \boldsymbol{A} = \nabla \times \boldsymbol{A}
+\end{align}
+
+斯托克斯定理：
+\begin{align}
+    \oint_C \boldsymbol{A} \cdot d\boldsymbol{l} = \int_S (\nabla \times \boldsymbol{A})\cdot d\boldsymbol{S}
+\end{align}
+
+\newpage 
+\section{电磁场的物理量与电磁场的基本规律——Maxwell方程组}
+\subsection{主要公式}
+\subsubsection{电磁场的源量：电荷与电流}
+电荷和电流是电磁场的源量。
+
+（1）电荷
+
+自由电荷：导体中能作定向运动、形成电流的自由电子和正负离子。
+
+束缚电荷：被紧密束缚在原子范围内，无法作宏观的运动，没有外加电场时，介质内的束缚电荷总是可以相互抵消，宏观上不显电性。
+
+极化电荷：是一种束缚电荷。存在外加电场时，正负束缚电荷会偏离原来的位置，显示出电性，此时电介质内部及表面出现的宏观束缚电荷，就是极化电荷。
+
+（2）电流
+
+自由电流：分为传导电流、运流电流。二者都是由自由电荷运动形成的，区别是介质不同。导体中的自由电子、离子和空穴等在外加电场作用下的宏观定向运动，形成传导电流。真空和气体中电子和离子的宏观迁移运动，形成运流电流。
+
+束缚电流：分为极化电流、磁化电流。电介质在外加变化电场作用下，极化电荷分布改变，产生极化电流。磁介质在外加磁场作用下，分子磁矩有序排列，在宏观上表现为磁介质内部或表面的磁化电流。 
+
+位移电流：并不代表任何电荷的移动，仅仅只是表达“变化的电场在激发磁场上与真实电流$\boldsymbol{J_D}$等效”。位移电流与自由电流之和，即为全电流。 
+\begin{align}
+    \boldsymbol{J_D} &= \frac{\partial \boldsymbol{D}}{\partial t} = \varepsilon_0 \frac{\partial \boldsymbol{E}}{\partial t} + \frac{\partial P}{\partial t}\\
+    \boldsymbol{J_{\mbox{全}}} &= \boldsymbol{J} + \frac{\partial \boldsymbol{D}}{\partial t}
+\end{align}
+
+体电流密度
+\begin{align}
+    I &= \int_S \boldsymbol{J}(\boldsymbol{r})\cdot d\boldsymbol{S}\\
+    \boldsymbol{J} &= \rho_V \cdot \boldsymbol{v}
+\end{align}
+
+面电流密度
+\begin{align}
+    I &= \int_l \boldsymbol{J_S}\cdot \boldsymbol{e_N}dl\\
+    \boldsymbol{J_S} &= \sigma \cdot \boldsymbol{v}
+\end{align}
+
+电荷守恒定律
+\begin{align}
+    \oint_S \boldsymbol{J}\cdot d\boldsymbol{S} = -\frac{dQ}{dt} = -\frac{d}{dt}\int_V \rho dV
+\end{align}
+
+全电流连续性方程：传导电流需要导电体，所以在某些地方如电容器的极板之间是中断的，但全电流连续。
+\begin{align}
+    \nabla \cdot \boldsymbol{J_{\mbox{全}}} &= 0\\
+    \oint_S \boldsymbol{J_{\mbox{全}}}\cdot d\boldsymbol{S} &= 0
+\end{align}
+
+\subsubsection{电磁场的场量：电场强度与磁场强度}
+
+体分布电荷V在空间中某点产生的电场强度
+\begin{align}
+    \boldsymbol{E} = \frac{1}{4\pi \varepsilon}\int_V \frac{\rho_V \boldsymbol{R}}{R^3} dV
+\end{align}
+
+回路l在空间中某点产生的磁感应强度
+\begin{align}
+    \boldsymbol{B} = \frac{\mu_0}{4\pi}\oint_l \frac{Id\boldsymbol{l}\times \boldsymbol{R}}{R^3}
+\end{align}
+
+回路l在磁场$\boldsymbol{B}$中受到的磁力
+\begin{align}
+    \boldsymbol{F_B} = \oint_l Id\boldsymbol{l}\times \boldsymbol{B}
+\end{align}
+
+\subsubsection{物质的电磁特性}
+
+在线性各向同性介质中，电介质极化强度
+\begin{align}
+    \boldsymbol{P} &= \lim_{\Delta V \to 0}\frac{\sum \boldsymbol{p}}{\Delta V} \\
+    &= \varepsilon_0 \chi_e \boldsymbol{E}
+\end{align}
+
+在线性各向同性介质中，电位移矢量
+\begin{align}
+    \boldsymbol{D} &= \varepsilon_0 \boldsymbol{E} + \boldsymbol{P} \\
+    &= \varepsilon_0 \varepsilon_r \boldsymbol{E} = \varepsilon\boldsymbol{E}
+\end{align}
+
+在线性、各向同性磁介质中，磁介质磁化强度
+\begin{align}
+    \boldsymbol{M} &= \lim_{\Delta V \to 0}\frac{\sum \boldsymbol{m}}{\Delta V} \\
+    &= \chi_m \boldsymbol{H}
+\end{align}
+
+在线性、各向同性磁介质中，磁感应强度
+\begin{align}
+    \boldsymbol{B} &= \mu_0 (\boldsymbol{H}+\boldsymbol{M})\\
+    &= \mu_0 (1+\chi_m)\boldsymbol{H} = \mu_0 \mu_r \boldsymbol{H} = \mu \boldsymbol{H}
+\end{align}
+
+\subsubsection{Maxwell方程组}
+电场的Gauss定理：电场可由电荷激发，通量源是电荷。任意闭合面上$\boldsymbol{D}$的通量=闭合面内自由电荷量。任意点处$\boldsymbol{D}$的散度=该点处自由电荷体密度$\rho_V$。
+
+Faraday电磁感应定律：电场也可以由时变磁场激发，漩涡源是磁力线。
+
+磁通连续性定理：磁场无通量源，是管型场，无磁荷。
+
+全电流Ampere环路定理：电流和时变电场都可激发磁场，都是磁场的漩涡源。$\boldsymbol{H}$沿任意闭合回路的环量=垂直通过回路所围成区域的全电流。$\boldsymbol{H}$在任意点的旋度=该点全电流密度。
+\begin{align}
+    \begin{cases}
+        \displaystyle \oint_S \boldsymbol{D}\cdot d\boldsymbol{S} = \displaystyle\int_V \rho_V dV\\
+        \displaystyle\oint_C \boldsymbol{E}\cdot d\boldsymbol{l} = -\dfrac{d}{dt}\displaystyle\int_S \boldsymbol{B}\cdot d\boldsymbol{S}\\
+        \displaystyle\oint_S \boldsymbol{B}\cdot d\boldsymbol{S} = 0\\
+        \displaystyle\oint_C \boldsymbol{H}\cdot d\boldsymbol{l} = \displaystyle\int_S (\boldsymbol{J} + \dfrac{\partial \boldsymbol{D}}{\partial t})\cdot d\boldsymbol{S}
+    \end{cases}
+\end{align} 
+\begin{align}
+    \begin{cases}
+        \nabla \cdot \boldsymbol{D} = \rho\\
+        \nabla \times \boldsymbol{E} = -\dfrac{\partial \boldsymbol{B}}{\partial t}\\
+        \nabla \cdot \boldsymbol{B} = 0\\
+        \nabla \times \boldsymbol{H} = \boldsymbol{J} + \dfrac{\partial \boldsymbol{D}}{\partial t}
+    \end{cases}
+\end{align}
+
+\subsubsection{电磁场的边界条件}
+当两种介质的分界面上有面分布自由电荷$\sigma$时，电位移矢量的法向分量$\boldsymbol{D_n}$不连续，差值为$\sigma$。但电场强度的切向分量$\boldsymbol{E_\tau}$始终连续。
+
+当两种介质的分界面上有面分布自由电流$\boldsymbol{J_S}$时，磁场强度的切向分量不连续，差值为$\boldsymbol{J_S}$。但磁感应强度的法向分量$\boldsymbol{B_n}$始终连续。
+\begin{align}
+    \boldsymbol{e_n}\cdot (\boldsymbol{D_2} - \boldsymbol{D_1}) &= \sigma \ \Longrightarrow \ \boldsymbol{e_n}\times (\boldsymbol{E_2} - \boldsymbol{E_1}) = 0\\
+    \boldsymbol{e_n}\cdot (\boldsymbol{B_2} - \boldsymbol{B_1}) &= 0 \ \Longrightarrow \ \boldsymbol{e_n}\times (\boldsymbol{H_2} - \boldsymbol{H_1}) = \boldsymbol{J_S}
+\end{align}
+
+分界面上极化电荷、束缚电流分布，分别导致电介质极化强度矢量的法向分量$\boldsymbol{P_n}$、磁介质磁化强度矢量的切向分量$\boldsymbol{M_\tau}$不连续。
+\begin{align}
+    \oint_S \boldsymbol{P}\cdot d\boldsymbol{S} &= -Q_P \Longrightarrow \boldsymbol{e_n}\cdot (\boldsymbol{P_2}-\boldsymbol{P_1}) = -\sigma_P \\
+    \oint_C \boldsymbol{M}\cdot d\boldsymbol{l} &= I_m \Longrightarrow \boldsymbol{e_n}\cdot (\boldsymbol{M_2}-\boldsymbol{M_1}) = \boldsymbol{J_{Sm}}
+\end{align}
+
+其中
+\begin{align}
+    \boldsymbol{P_1} &= (\varepsilon - \varepsilon_0)\boldsymbol{E_1}, \quad \boldsymbol{M_1} = (\frac{\mu_1}{\mu_0}-1) \boldsymbol{H_1}\\
+    \boldsymbol{P_2} &= (\varepsilon - \varepsilon_0)\boldsymbol{E_2}, \quad \boldsymbol{M_2} = (\frac{\mu_2}{\mu_0}-1) \boldsymbol{H_2}
+\end{align}
+
+\newpage
+\section{恒定电场}
+
+\subsection{研究内容}
+
+\begin{table}[H]
+\centering
+\caption{静电场与恒定电场的研究对象}
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[100]Q[400]},
+  hline{1-2,7} = {-}{},
+}
+物理量类型 & 物理量\\
+场矢量 & 电位移矢量$\boldsymbol{D}$, 电场矢量$\boldsymbol{E}$, 极化强度矢量$\boldsymbol{P}$\\
+势量 & 电势$\varphi $\\
+力矢量 & 电场力$\boldsymbol{F_E}$\\
+能量 & 静电能$W_e$, 静电能能量密度$\omega_e$\\
+电荷分布 & 面电荷密度$\sigma_e$, 体电荷密度$\rho_e$
+\end{tblr}
+\end{table}
+
+\subsection{主要公式}
+
+\subsubsection{静电场基本方程}
+\begin{align}
+    \begin{cases}
+    \mbox{电场的Gauss定理：}\nabla \cdot \boldsymbol{D} = \rho \\
+    \mbox{Faraday电磁感应定律：}\nabla \times \boldsymbol{E} = 0 \\
+    \mbox{辅助方程：}\boldsymbol{D} = \varepsilon \boldsymbol{E} = \varepsilon_0 \boldsymbol{E} + \boldsymbol{P}
+    \end{cases}
+\end{align}
+
+\subsubsection{电势}
+电势与电场强度、与电荷分布的关系：
+\begin{align}
+    &\boldsymbol{E} = -\nabla \varphi \\
+    &\varphi_A - \varphi_B = \int_A^B \boldsymbol{E} \cdot d\boldsymbol{l}\\
+    &\varphi_A = \int_A^{\infty} \boldsymbol{E} \cdot d\boldsymbol{l}\\ 
+    &\varphi = \frac{1}{4\pi \varepsilon_0} \sum_{i = 1}^N \frac{q_i}{R_i} = \frac{1}{4\pi \varepsilon_0} \int_V \frac{\rho dV}{R} = \frac{1}{4\pi \varepsilon_0} \int_S \frac{\sigma  dS}{R}
+\end{align}
+
+在线性、各向同性均匀介质中有电势的泊松方程：
+\begin{align}
+    &\because \nabla \cdot \boldsymbol{E} = \frac{\rho}{\varepsilon}\\
+    \mbox{又}&\because \nabla \times \boldsymbol{E} = 0, \boldsymbol{E} = -\nabla \varphi \\
+    &\therefore \nabla^2 \varphi = \nabla \cdot (\nabla \boldsymbol{\varphi}) = -\nabla \cdot \boldsymbol{E} = -\frac{\rho}{\varepsilon }
+\end{align}
+
+在线性、各向同性均匀介质中，如果自由电荷体密度为0，例如导体，则有电势的拉普拉斯方程：
+\begin{align}
+    \nabla^2 \varphi = 0
+\end{align}
+
+\subsubsection{电场的边界条件}
+法向边界条件：两种电介质的分界面两侧，电位移矢量$\boldsymbol{D}$的法向分量的差值=分界面上自由电荷面密度。
+\begin{align}
+    &\nabla \cdot \boldsymbol{D} = \rho\\
+    &\Rightarrow \boldsymbol{e_n}\cdot (\boldsymbol{D_2}-\boldsymbol{D_1}) = \sigma, \ D_{2n} - D_{1n} = \sigma
+\end{align}
+
+切向边界条件：两种电介质的分界面两侧，电场强度$\boldsymbol{E}$的切向分量一定连续。
+\begin{align}
+    &\nabla \times \boldsymbol{E} = -\frac{\partial \boldsymbol{B}}{\partial t}\\
+    &\Rightarrow \boldsymbol{e_n}\times (\boldsymbol{E_2}-\boldsymbol{E_1}) = 0, \ E_{2\tau} - E_{1\tau} = 0
+\end{align}
+
+自由体电荷分布与自由面电荷分布：
+\begin{align}
+    \rho &= \nabla \cdot \boldsymbol{D}\\
+    \sigma &= \boldsymbol{e_n} \cdot (\boldsymbol{D_2}-\boldsymbol{D_1})
+\end{align}
+式中
+\begin{align}
+    \boldsymbol{D_2} = \varepsilon_2 \boldsymbol{E_2}, \quad \boldsymbol{D_1} = \varepsilon_1 \boldsymbol{E_1}
+\end{align}
+
+极化体电荷分布与极化面电荷分布：
+\begin{align}
+    {\rho_p} &= -\nabla \cdot \boldsymbol{P}\\
+    {\sigma_p} &= -\boldsymbol{e_n} \cdot (\boldsymbol{P_2}-\boldsymbol{P_1})
+\end{align}
+式中
+\begin{align}
+    \boldsymbol{P_1} = (\varepsilon_1 - \varepsilon_0)\boldsymbol{E_1}, \quad 
+    \boldsymbol{P_2} = (\varepsilon_2 - \varepsilon_0)\boldsymbol{E_2}
+\end{align}
+
+线性、各向均匀介质中的电势方程：
+\begin{align}
+    \nabla^2 \varphi = -\frac{\rho}{\varepsilon}
+\end{align}
+
+电势表示的边界条件：
+\begin{align}
+    \begin{cases}
+        \varphi_1 = \varphi_2\\
+        \varepsilon_1 \dfrac{\partial \varphi_1}{\partial \boldsymbol{n}} - \varepsilon_2 \dfrac{\partial \varepsilon_2}{\partial \boldsymbol{n}} = D_{2n} - D_{1n} = \sigma_s
+    \end{cases}
+\end{align}
+
+
+\subsubsection{电容、静电场的能量}
+点电荷系的静电能：
+\begin{align}
+    W_e = \frac{1}{2} \sum_{i = 1}^{N} \sum_{j = 1, j\neq i}^{N} q_i \varphi_{ij} = \frac{1}{2} \sum_{i=1}^{N} q_i \varphi_i
+\end{align}
+
+对于有N个带电导体，其表面积、电势、电荷量分别为$S_i$、$\varphi_i$、$q_i$，该系统的静电能：
+\begin{align}
+    W_e = \frac{1}{2} \sum_{i = 1}^{N} \int_{S_i} \sigma_i \varphi_i dS_i = \frac{1}{2} \sum_{i=1}^{N} q_i \varphi_i
+\end{align}
+
+体分布电荷的静电能：
+\begin{align}
+    W_e = \frac{1}{2} \int_V \rho(\boldsymbol{r}) \varphi(\boldsymbol{r}) dV 
+\end{align}
+
+特例：对于双导体电容，系统的静电能：
+\begin{align}
+    W_e = \frac{1}{2} (Q \varphi_1 + (-Q)\varphi_2) = \frac{1}{2} QU = \frac{1}{2} CU^2 = \frac{Q^2}{2C}
+\end{align}
+
+静电场的能量密度：
+\begin{align}
+    \omega_e = \frac{dW_e}{dV} = \frac{1}{2} \boldsymbol{D} \cdot \boldsymbol{E}
+\end{align}
+
+焦耳定律——热功率密度：
+\begin{align}
+    p = \frac{dP}{dV} = \boldsymbol{J} \cdot \boldsymbol{E}
+\end{align}
+
+\newpage
+\section{恒定磁场}
+
+\subsection{研究内容}
+
+\begin{table}[H]
+\centering
+\caption{恒定磁场的研究对象}
+\begin{tblr}{
+  width = \linewidth,
+  colspec = {Q[100]Q[400]},
+  hline{1-2,7} = {-}{},
+}
+物理量类型 & 物理量\\
+场矢量 & 磁感应强度矢量$\boldsymbol{B}$，磁场强度矢量$\boldsymbol{H}$，磁化强度矢量$\boldsymbol{M}$\\
+势量 & 矢量磁位势$\boldsymbol{A}$\\
+力矢量 & 安培力$\boldsymbol{F_{\mbox{安}}}$，洛伦兹力$\boldsymbol{F_{\mbox{洛}}}$\\
+能量 & 磁场能$W_m$, 磁场能量密度$\omega_m$\\
+电流分布 & 磁化面电流密度$\boldsymbol{J_{Sm}}$, 磁化体电流密度$\boldsymbol{J_{Vm}}$
+\end{tblr}
+\end{table}
+
+\subsection{主要公式}
+\subsubsection{恒定磁场的基本方程}
+恒定磁场的基本方程：
+\begin{align}
+    \begin{cases}
+    \mbox{安培环路定理：}\nabla \times \boldsymbol{H} = \boldsymbol{J} \\
+    \mbox{磁通连续方程：}\nabla \cdot \boldsymbol{B} = 0 \\
+    \mbox{辅助方程：}\boldsymbol{B} = \mu  \boldsymbol{H} = \mu_0 \boldsymbol{H} + \boldsymbol{M}
+    \end{cases}
+\end{align}
+
+$Biot-Savart$定律：
+\begin{align}
+    &\mbox{微分形式：}
+    \textcolor{red}{d\boldsymbol{B} = \frac{\mu_0}{4\pi} \frac{I\boldsymbol{dl}\times \boldsymbol{e_R}}{R^2}}, \mbox{ 式中微元电流}Id\boldsymbol{l} = \boldsymbol{J}dV = \boldsymbol{J_S}dS
+    \\
+    &\mbox{积分形式：}
+    \boldsymbol{B} = \frac{\mu_0}{4\pi}\oint_C \frac{I\boldsymbol{dl}\times \boldsymbol{e_R}}{R^2} = \frac{\mu_0}{4\pi}\oint_C \frac{\boldsymbol{J}\times \boldsymbol{e_R}}{R^2}dV
+\end{align}
+
+\subsubsection{矢量磁位势函数}
+矢量磁位势函数的定义：
+\begin{align}
+    \begin{cases}
+        \mbox{定义：}\boldsymbol{B} = \nabla \times \boldsymbol{A}\\
+        \mbox{库伦规范：}\nabla \cdot \boldsymbol{A} = 0
+    \end{cases}
+    \Rightarrow 
+    \textcolor{red}{
+        \boldsymbol{A} = \frac{\mu_0}{4\pi}\int_{V} \frac{\boldsymbol{J}}{R}dV
+    }
+\end{align}
+
+矢量磁位势函数的微分方程：计算矢量磁位势的另一办法，将矢量微分方程转化为标量方程。
+\begin{align}
+    &\because \nabla \times \boldsymbol{B} = \mu (\nabla \times \boldsymbol{H}) = \mu \boldsymbol{J}\\
+    &\therefore \nabla \times \nabla \times \boldsymbol{A} = \nabla(\nabla \cdot \boldsymbol{A}) - \nabla^2 \boldsymbol{A} = \mu \boldsymbol{J}\\
+    &\therefore \mbox{矢量磁位势的泊松方程：}\textcolor{red}{
+        \nabla^2 \boldsymbol{A} = -\mu \boldsymbol{J}\Rightarrow \boldsymbol{A} = \frac{\mu_0}{4\pi}\int_{V} \frac{\boldsymbol{J}}{R}dV
+    }
+    \\
+    &\therefore 
+    \begin{cases}
+        \nabla^2 A_x = -\mu J_x\\
+        \nabla^2 A_y = -\mu J_y\\
+        \nabla^2 A_z = -\mu J_z\\
+    \end{cases}\Rightarrow 
+    \begin{cases}
+        A_x = \dfrac{\mu}{4\pi}\displaystyle\int_V \dfrac{J_x dV}{R}\\
+        A_y = \dfrac{\mu}{4\pi}\displaystyle\int_V \dfrac{J_y dV}{R}\\
+        A_z = \dfrac{\mu}{4\pi}\displaystyle\int_V \dfrac{J_z dV}{R}
+    \end{cases}
+\end{align}
+
+\subsubsection{恒定磁场的边界条件}
+法向边界条件：两种磁介质的分界面两侧，磁感应强度$\boldsymbol{B}$的法向分量连续。
+\begin{align}
+    &\nabla \cdot \boldsymbol{B} = 0\\
+    &\Rightarrow \boldsymbol{e_n}\cdot (\boldsymbol{B_2} - \boldsymbol{B_1}) = 0, \quad B_{2n} = B_{1n}
+\end{align}
+
+切向边界条件：两种磁介质的分界面两侧，磁场强度$\boldsymbol{H}$的切向分量的差值=分界面上自由电流面密度。一个非常典型的实例是无限长载流螺线管，在管的内外两侧$H_{2\tau}-H_{1\tau} = nI - 0 = nI$，式中$n$为单位长度上的螺线管匝数，$I$为螺线管载流，$J_S = nI$为单位长度上的面电流大小，即面自由电流密度。
+
+一般而言，磁介质表面不存在自由电流，$\boldsymbol{J_S}=0$，但如果是导体，则可能存在面自由电流。
+\begin{align}
+    &\nabla \times \boldsymbol{H} = \boldsymbol{J}\\
+    &\Rightarrow \boldsymbol{e_n}\times (\boldsymbol{H_2} - \boldsymbol{H_1}) = \boldsymbol{J_S}, \quad H_{2\tau} - H_{1\tau} = J_S
+\end{align}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{figures/螺线管的磁力线.png}
+\caption{螺线管的磁力线}
+\label{fig:螺线管的磁力线}
+\end{figure}
+
+磁介质内部磁化体电流密度、磁介质表面磁化面电流密度：
+\begin{align}
+    \boldsymbol{J_{Vm}} = \nabla \times \boldsymbol{M}\\
+    \boldsymbol{J_{Sm}} = \boldsymbol{M} \times \boldsymbol{e_n}
+\end{align}
+
+总结：讨论电磁场边界条件时的两种特殊电磁媒质。
+
+（1）理想导体：电阻$R = 0$，电导率$\gamma = \infty$，内部一旦有电场作用时，导体内部自由电荷会迅速流动到表面上，直到内部不存在电场，达到新的静电平衡，故理想导体总是个等势体。再根据Maxwell方程组，可知理想导体内部必不存在时变磁场（严格意义上，允许恒定磁场存在），以及理想导体内部必不存在自由电荷、自由电流。
+\begin{align}
+    \mbox{导体内部始终有}\boldsymbol{E} = 0
+    \Rightarrow 
+    \begin{cases}
+        \nabla \times \boldsymbol{E} = -\dfrac{\partial \boldsymbol{B}}{\partial t} = 0\\
+        \nabla \cdot \boldsymbol{D} = \rho = 0\\
+        \boldsymbol{J} = \gamma \boldsymbol{E} = 0
+    \end{cases}
+\end{align}
+
+由此可知，时变电磁场入射理想导体表面时会发生全反射。
+
+（2）理想介质：电导率$\gamma = 0$，内部无自由电荷，表面也没有自由电荷和自由面电流。
+
+\subsubsection{电感、磁场的能量}
+电感定义为磁通量与励磁电流的比例系数，根据励磁电流的来源分为自感、互感：
+\begin{align}
+    L = \frac{\varPhi}{I},\quad \mbox{单位:亨利H}
+\end{align}
+
+磁场的能量密度：
+\begin{align}
+    \omega_m = \frac{1}{2} \boldsymbol{B}\cdot \boldsymbol{H} \xlongequal{if\ \boldsymbol{B} = \mu \boldsymbol{H}} \frac{1}{2}\mu H^2
+\end{align}
+
+磁场的能量：
+\begin{align}
+    W_m = \int_V \omega_m dV = \frac{1}{2}\int_V (\boldsymbol{B}\cdot \boldsymbol{H}) dV
+\end{align}
+
+\newpage
+\section{时变电磁场}
+
+\subsection{主要公式}
+
+\subsubsection{波动方程}
+线性、各向同性、均匀的不导电（$\gamma=0$）媒质中，不妨设媒质媒质有外加电流源$\boldsymbol{J_0}$、外加电荷源$\rho$，有波动方程：
+\begin{align}
+    \nabla^2 \boldsymbol{E} - \mu \varepsilon \frac{\partial^2 \boldsymbol{E}}{\partial t^2} &= \frac{\nabla \rho}{\varepsilon} + \mu \frac{\partial \boldsymbol{J_0}}{\partial t} \\
+    \nabla^2 \boldsymbol{H} - \mu \varepsilon \frac{\partial^2 \boldsymbol{H}}{\partial t^2} &= -\nabla \times \boldsymbol{J_0}
+\end{align}
+
+如果区域无源，则有齐次波动方程：
+\begin{align}
+    \nabla^2 \boldsymbol{E} - \mu \varepsilon \frac{\partial^2 \boldsymbol{E}}{\partial t^2} &= 0 \\
+    \nabla^2 \boldsymbol{H} - \mu \varepsilon \frac{\partial^2 \boldsymbol{H}}{\partial t^2} &= 0
+\end{align}
+
+\subsubsection{位函数的波动方程}
+首先给出位函数的定义。矢量磁位$\boldsymbol{A}$，标量电位$\varphi$的定义可由Maxwell方程导出：
+\begin{align}
+    \begin{cases}
+        \nabla \cdot \boldsymbol{B} = 0\\
+        \nabla \times (\boldsymbol{E} + \dfrac{\partial \boldsymbol{A}}{\partial t}) = 0
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        \boldsymbol{B} = \nabla \times \boldsymbol{A}\\
+        \boldsymbol{E} + \dfrac{\partial \boldsymbol{A}}{\partial t} = -\nabla \varphi 
+    \end{cases}
+\end{align}
+
+Lorentz规范条件：
+\begin{align}
+    \nabla \cdot \boldsymbol{A} = -\mu\varepsilon \frac{\partial \varphi}{\partial t}
+\end{align}
+
+在Lorentz规范条件下，有位函数的波动方程：
+\begin{align}
+    \begin{cases}
+        \nabla^2 \boldsymbol{A} - \mu\varepsilon\dfrac{\partial^2 \boldsymbol{A}}{\partial t^2} = -\mu \boldsymbol{J}\\
+        \nabla^2 \varphi - \mu\varepsilon\dfrac{\partial^2 \varphi}{\partial t^2} = -\dfrac{\rho}{\varepsilon}
+    \end{cases}
+\end{align}
+
+\subsubsection{坡印廷矢量、坡印廷定理}
+\textcolor{red}{坡印廷矢量：空间中某点处某时刻通过单位面积的瞬时电磁场功率大小和方向，即瞬时功率流密度}。
+\begin{align}
+    \textcolor{red}{\boldsymbol{S} = \boldsymbol{E}\times \boldsymbol{H}}
+\end{align}
+
+微分形式的坡印廷定理：外界向电磁场中某点提供的电磁功率密度=该点电磁场能量密度的时间增加率+对该点处单位体积自由电荷做功的功率密度之和。
+\begin{align}
+    &\nabla \cdot (\boldsymbol{E}\times \boldsymbol{H}) 
+    = \boldsymbol{H}\cdot (\nabla \times \boldsymbol{E}) - \boldsymbol{E}\cdot (\nabla \times \boldsymbol{H}) 
+    = \boldsymbol{H}\cdot (-\frac{\partial \boldsymbol{B}}{\partial t}) - \boldsymbol{E}\cdot (\boldsymbol{J} + \frac{\partial \boldsymbol{D}}{\partial t}) \\
+    &\Rightarrow \textcolor{red}{-\nabla \cdot \boldsymbol{S} = \frac{\partial (\omega_e+\omega_m)}{\partial t}+p}
+\end{align}
+
+式中
+\begin{align}
+    &\mbox{对单位体积自由电荷做功：}p = \frac{d\boldsymbol{F}}{dV}\cdot \boldsymbol{v} = (\rho \boldsymbol{E} + \rho \boldsymbol{v}\times \boldsymbol{B})\cdot \boldsymbol{v} = \rho \boldsymbol{E}\cdot \boldsymbol{v} = \boldsymbol{J}\cdot \boldsymbol{E}\\
+    &\mbox{电场能量密度：}\omega_e = \frac{1}{2}\boldsymbol{D}\cdot \boldsymbol{E}\\
+    &\mbox{磁场能量密度：}\omega_m = \frac{1}{2}\boldsymbol{B}\cdot \boldsymbol{H}
+\end{align}
+
+积分形式的坡印廷定理：外界通过闭合曲面S进入其所包围体积V中的电磁功率=V内电磁场储存能量的时间增加率+对V内的自由电荷做功功率。
+\begin{align}
+    \textcolor{red}{-\oint_S \boldsymbol{S}\cdot d\boldsymbol{S} = \frac{d}{dt}\int_V(\omega_e+\omega_m) dV + \int_V pdV}
+\end{align}
+
+\subsubsection{时谐电磁场的复数描述}
+时谐电磁场的场矢量时间函数为（以电场矢量函数为例）
+\begin{align}
+    \textcolor{red}{
+        \boldsymbol{E}(\boldsymbol{r}, t) = \boldsymbol{e_x}E_{x_m}(\boldsymbol{r})\cos(\omega t + \varphi_x) + \boldsymbol{e_y}E_{y_m}(\boldsymbol{r})\cos(\omega t + \varphi_y) + \boldsymbol{e_z}E_{z_m}(\boldsymbol{r})\cos(\omega t + \varphi_z)
+        }
+     \nonumber 
+\end{align}
+
+由于$e^{j\theta} = cos \theta + j sin\theta,\ cos \theta = Re\left\{e^{j\theta}\right\}$，故有
+\begin{align}
+    \textcolor{red}{
+    \boldsymbol{E}(\boldsymbol{r}, t) = \boldsymbol{e_x} Re\left\{\dot{E}_{x_m}(\boldsymbol{r})e^{j\omega t}\right\} + \boldsymbol{e_y} Re\left\{\dot{E}_{y_m}(\boldsymbol{r})e^{j\omega t}\right\} + \boldsymbol{e_z} Re\left\{\dot{E}_{z_m}(\boldsymbol{r})e^{j\omega t}\right\}
+    }
+\end{align}
+式中引入了各分量的复振幅：包含振幅与初相位信息。
+\begin{align}
+    \dot{E}_{x_m}(\boldsymbol{r}) &= E_{x_m}(\boldsymbol{r})e^{j\varphi_x(\boldsymbol{r})}\\
+    \dot{E}_{y_m}(\boldsymbol{r}) &= E_{y_m}(\boldsymbol{r})e^{j\varphi_y(\boldsymbol{r})}\\
+    \dot{E}_{z_m}(\boldsymbol{r}) &= E_{z_m}(\boldsymbol{r})e^{j\varphi_z(\boldsymbol{r})}
+\end{align}
+
+将各分量的复振幅合并，得到时谐电磁场的复矢量描述：
+\begin{align}
+    \boldsymbol{\dot{E}}(\boldsymbol{r}) = \boldsymbol{e_x}\dot{E}_{x_m}(\boldsymbol{r}) + \boldsymbol{e_y}\dot{E}_{y_m}(\boldsymbol{r}) + \boldsymbol{e_z}\dot{E}_{z_m}(\boldsymbol{r})
+\end{align}
+
+时谐电磁场场矢量的复矢量描述与时间函数描述的关系式：
+\begin{align}
+    \textcolor{red}{
+        \boldsymbol{E}(\boldsymbol{r}, t) = Re\left\{\boldsymbol{\dot{E}}(\boldsymbol{r})e^{j\omega t}\right\}
+    }
+\end{align}
+
+时谐电磁场场矢量的时间函数对时间的微分/积分运算与复振幅矢量的关系：
+\begin{align}
+    \frac{\partial}{\partial t}\boldsymbol{E}(\boldsymbol{r}, t) &= Re\left\{j\omega \boldsymbol{\dot{E}}(\boldsymbol{r})e^{j\omega t}\right\}\\
+    \int \boldsymbol{E}(\boldsymbol{r}, t)dt &= Re\left\{\frac{1}{j\omega} \boldsymbol{\dot{E}}(\boldsymbol{r})e^{j\omega t}\right\}
+\end{align}
+
+两个实矢量的时间函数的乘积与复振幅矢量的关系：注意，如果题目给出的$\boldsymbol{E}(\boldsymbol{r}, t)$、$\boldsymbol{H}(\boldsymbol{r}, t)$的振幅不是实数，则须首先转化为实矢量才能使用后续的性质。
+\begin{align}
+    \boldsymbol{A}(t)\times \boldsymbol{B}(t) &= Re\left\{\boldsymbol{\dot{A}}e^{j\omega t}\right\}\times Re\left\{\boldsymbol{\dot{B}}^{j\omega t}\right\}\\
+    &= \frac{1}{2}(\boldsymbol{\dot{A}}e^{j\omega t}+\boldsymbol{\dot{A}}^{*}e^{-j\omega t}) \times \frac{1}{2}(\boldsymbol{\dot{B}}e^{j\omega t}+\boldsymbol{\dot{B}}^{*}e^{-j\omega t})\\
+    &= \frac{1}{2}\left[Re\left\{\boldsymbol{\dot{A}}\times \boldsymbol{\dot{B}}^{*}\right\} + Re\left\{\boldsymbol{\dot{A}}\times \boldsymbol{\dot{B}}e^{j2\omega t}\right\}\right]\\
+    \frac{1}{T}\int_0^T [\boldsymbol{A}(t)\times \boldsymbol{B}(t)]dt &= \frac{1}{2}Re\left\{\boldsymbol{\dot{A}}\times \boldsymbol{\dot{B}}^{*}\right\}
+\end{align}
+
+\subsubsection{复数描述时谐电磁场所满足的物理关系}
+麦克斯韦方程组的复数形式：
+\begin{align}
+    \begin{cases}
+    \nabla \cdot \boldsymbol{\dot{D}} = \dot{\rho} \\
+    \nabla \times \boldsymbol{\dot{E}} = -j\omega \boldsymbol{\dot{B}} \\
+    \nabla \cdot \boldsymbol{\dot{B}} = 0 \\
+    \nabla \times \boldsymbol{\dot{H}} = \boldsymbol{\dot{J}} + j\omega \boldsymbol{\dot{D}} \\
+    \end{cases}
+\end{align}
+
+电流连续性方程的复数形式：
+\begin{align}
+    \nabla \cdot \boldsymbol{\dot{J}} &= -j\omega \dot{\rho}\\
+    \oint_S \boldsymbol{\dot{J}}\cdot d\boldsymbol{S} &= -j\omega \int_V \dot{\rho}dV
+\end{align}
+
+本构方程的复数形式：
+\begin{align}
+    \begin{cases}
+        \boldsymbol{\dot{D}} = \varepsilon \boldsymbol{\dot{E}}\\
+        \boldsymbol{\dot{B}} = \mu \boldsymbol{\dot{H}}\\
+        \boldsymbol{\dot{J}} = \gamma \boldsymbol{\dot{E}}
+    \end{cases}
+\end{align}
+
+线性、各向同性、均匀的无源媒质中，场强复矢量的齐次复波动方程（亥姆霍兹方程）：
+\begin{align}
+    \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} - j\omega \mu \gamma \boldsymbol{\dot{E}} + \omega^2 \mu \varepsilon \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} - j\omega \mu \gamma \boldsymbol{\dot{H}} + \omega^2 \mu \varepsilon \boldsymbol{\dot{H}} = 0
+    \end{cases}
+    \Rightarrow 
+    \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} + \omega^2 \mu \varepsilon_c \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} + \omega^2 \mu \varepsilon_c \boldsymbol{\dot{H}} = 0
+    \end{cases}
+\end{align}
+其中\textcolor{red}{$\varepsilon_c = \varepsilon - j\dfrac{\gamma}{\omega}$为导电媒质的复介电常数}，它使得导电媒质的复波动方程与$\gamma=0$的理想介质的复波动方程有相同的形式。
+
+\subsubsection{复坡印廷矢量、复坡印廷定理}
+时谐电磁场\textcolor{red}{坡印廷矢量的时间函数}为
+\begin{align}
+    \textcolor{red}{\boldsymbol{S}(\boldsymbol{r},t) = \boldsymbol{E}(\boldsymbol{r},t) \times \boldsymbol{H}(\boldsymbol{r},t)}
+\end{align}
+
+其时间平均值为\textcolor{red}{平均坡印廷矢量}，表示空间中某点处一段时间内通过单位面积的总电磁场功率大小和方向，即有功功率流密度。
+\begin{align}
+    \textcolor{red}{\boldsymbol{S}_{av}(\boldsymbol{r})} &\textcolor{red}{ = \frac{1}{T}\int_0^T \boldsymbol{S}(\boldsymbol{r},t)dt} = \frac{1}{T}\int_0^T [\boldsymbol{E}(\boldsymbol{r},t) \times \boldsymbol{H}(\boldsymbol{r},t)]dt \\
+    &\textcolor{red}{ = \frac{1}{2}Re\left\{\boldsymbol{\dot{E}}(\boldsymbol{r})\times \boldsymbol{\dot{H}}^{*}(\boldsymbol{r})\right\}}
+\end{align}
+
+定义\textcolor{red}{复坡印廷矢量}：
+\begin{align}
+    \textcolor{red}{\boldsymbol{\dot{S}}(\boldsymbol{r}) = \frac{1}{2}\boldsymbol{\dot{E}}(\boldsymbol{r})\times \boldsymbol{\dot{H}}^{*}(\boldsymbol{r})}
+\end{align}
+
+复坡印廷矢量的实部即平均坡印廷矢量，表示有功功率流密度。复坡印廷矢量的虚部则表示无功功率流密度。
+\begin{align}
+    \boldsymbol{S}_{av}(\boldsymbol{r}) = Re\left\{\boldsymbol{\dot{S}}(\boldsymbol{r})\right\}
+\end{align}
+
+复坡印廷定理的微分形式：
+
+电磁场向某点提供的有功功率密度的时间平均值=该点处损耗功率密度的时间平均值。
+
+电磁场向某点提供的无功功率密度的时间平均值=磁场能量密度与电场能量密度的时间平均值之差。
+\begin{align}
+    &\nabla \cdot (\boldsymbol{\dot{E}}\times \boldsymbol{\dot{H}^*}) 
+    = \boldsymbol{\dot{H}^*}\cdot (\nabla \times \boldsymbol{\dot{E}}) - \boldsymbol{\dot{E}}\cdot (\nabla \times \boldsymbol{\dot{H}^*}) 
+    = \boldsymbol{\dot{H}^*}\cdot (-j\omega \boldsymbol{\dot{B}}) - \boldsymbol{\dot{E}}\cdot (\boldsymbol{\dot{J}^*} + j\omega \boldsymbol{\dot{D}^*})\nonumber \\
+    \Rightarrow &-\nabla \cdot \frac{1}{2}(\boldsymbol{\dot{E}}\times \boldsymbol{\dot{H}}^*) = \frac{1}{2}\boldsymbol{\dot{E}}\cdot \boldsymbol{\dot{J}}^* + j2\omega (\frac{1}{4}\boldsymbol{\dot{B}}\cdot \boldsymbol{\dot{H}}^* - \frac{1}{4}\boldsymbol{\dot{E}}\cdot \boldsymbol{\dot{D}}^*)\\
+    \Rightarrow &-\nabla \cdot \boldsymbol{\dot{S}} = p_{av}(\boldsymbol{r}) + j2\omega (\omega_{m_{av}}(\boldsymbol{r}) - \omega_{e_{av}}(\boldsymbol{r}))
+\end{align}
+
+复坡印廷定理的积分形式：
+\begin{align}
+    -\oint_S \frac{1}{2}(\boldsymbol{\dot{E}}\times \boldsymbol{\dot{H}}^*)d\boldsymbol{S} &= \int_V \frac{1}{2}\boldsymbol{\dot{E}}\cdot \boldsymbol{\dot{J}}^* dV + j2\omega \int_V (\frac{1}{4}\boldsymbol{\dot{B}}\cdot \boldsymbol{\dot{H}}^* - \frac{1}{4}\boldsymbol{\dot{E}}\cdot \boldsymbol{\dot{D}}^*)dV\\
+    -\oint_S \boldsymbol{\dot{S}}d\boldsymbol{S} &= \int_V p_{av}dV + j2\omega \int_V (\omega_{m_{av}}(\boldsymbol{r}) - \omega_{e_{av}}(\boldsymbol{r}))dV
+\end{align}
+
+\newpage 
+\section{各向同性介质中的均匀平面电磁波}
+
+\subsection{主要公式}
+
+回顾：线性、各向同性、均匀、无界、无源（$\rho = 0, \boldsymbol{J} = 0$）的理想介质中，时谐场的$\boldsymbol{\dot{E}}, \ \boldsymbol{\dot{H}}$满足齐次波动方程（亥姆霍兹方程）：
+\begin{align}
+    \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} + \omega^2 \mu \varepsilon \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} + \omega^2 \mu \varepsilon \boldsymbol{\dot{H}} = 0
+    \end{cases}
+    \Rightarrow 
+    \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} + k^2 \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} + k^2 \boldsymbol{\dot{H}} = 0
+    \end{cases}
+\end{align}
+式中$k=\omega \sqrt{\mu \varepsilon}$为波数（实数）。
+
+\subsubsection{理想介质中的均匀平面电磁波}
+平面波：等相位面为平面。
+
+均匀平面波：等相位面为平面，且在等相位面上各点振幅相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{figures/均匀平面电磁波的传播.png}
+\caption{振动方向为x轴方向的均匀平面波沿z轴传播}
+\label{fig:均匀平面电磁波的传播}
+\end{figure}
+
+设均匀平面电磁波沿z轴正向传播，等相位面为$z=C$，则
+\begin{align}
+    \nabla^2 \boldsymbol{\dot{E}} + k^2 \boldsymbol{\dot{E}} = 0 
+    \Rightarrow 
+    \begin{cases}
+        \nabla^2 \dot{E_x} + k^2 \dot{E_x} = 0\\
+        \nabla^2 \dot{E_y} + k^2 \dot{E_y} = 0
+    \end{cases}
+\end{align}
+式中$\dot{E}_x(\boldsymbol{r}),\ \dot{E}_y(\boldsymbol{r})$是空间中各点的$\boldsymbol{\dot{E}}(\boldsymbol{r}, t)$在x、y方向上的振动分量。
+
+对于沿z轴正向传播的均匀平面电磁波，$z=C$平面内振动$\boldsymbol{\dot{E}}(\boldsymbol{r}, t)$相位、幅度必然处处相同，故可解出
+\begin{align}
+    &\begin{cases}
+        \nabla^2 \dot{E_x} = \dfrac{\partial^2 \dot{E_x}}{\partial x^2} + \dfrac{\partial^2 \dot{E_x}}{\partial y^2} + \dfrac{\partial^2 \dot{E_x}}{\partial z^2} = \dfrac{\partial^2 \dot{E_x}}{\partial z^2}\\
+        \nabla^2 \dot{E_y} = \dfrac{\partial^2 \dot{E_y}}{\partial x^2} + \dfrac{\partial^2 \dot{E_y}}{\partial y^2} + \dfrac{\partial^2 \dot{E_y}}{\partial z^2} = \dfrac{\partial^2 \dot{E_y}}{\partial z^2}
+    \end{cases}
+    \Rightarrow 
+    \begin{cases}
+        \dfrac{\partial^2 \dot{E_x}}{\partial z^2} + k^2 \dot{E_x} = 0\\
+        \dfrac{\partial^2 \dot{E_y}}{\partial z^2} + k^2 \dot{E_y} = 0
+    \end{cases}\\
+    &\Rightarrow 
+    \mbox{复振幅解:}\begin{cases}
+        \dot{E}_x(z) = \dot{E}_{x_0}e^{-jkz} = |E_{x_0}|e^{j\varphi_x-jkz}\\
+        \dot{E}_y(z) = \dot{E}_{y_0}e^{-jkz} = |E_{y_0}|e^{j\varphi_y-jkz}\\
+        \boldsymbol{\dot{E}}(z) = \boldsymbol{\dot{E}_0}e^{-jkz} = (\boldsymbol{e_x}\dot{E}_{x_0} + \boldsymbol{e_y}\dot{E}_{y_0})e^{-jkz}
+    \end{cases}\nonumber\\
+    &\Rightarrow 
+    \mbox{时间函数解:}\begin{cases}
+        E_x(z,t) = Re\left\{ \dot{E}_x(z)e^{j\omega t} \right\} = |E_{x_0}| cos(\omega t-\varphi_x-kz)\\
+        E_y(z,t) = Re\left\{\dot{E}_y(z)e^{j\omega t}\right\} = |E_{y_0}| cos(\omega t-\varphi_y-kz)\\
+        \boldsymbol{E}(z,t) = Re\left\{\boldsymbol{\dot{E}}(z)e^{j\omega t}\right\} = \boldsymbol{e_x}|E_{x_0}| cos(\omega t-\varphi_x-kz) + \boldsymbol{e_y}|E_{y_0}| cos(\omega t-\varphi_y-kz)
+    \end{cases}\nonumber
+\end{align}
+式中$\omega t$、$\varphi_x$、$kz$分别为时间相位、初相位、空间相位。
+
+磁场与电场的关系：
+\begin{align}
+    &\nabla \times \boldsymbol{E} = -j\omega \mu \boldsymbol{H} \\
+    &\Rightarrow 
+    \boldsymbol{H} = \frac{j}{\omega \mu}\nabla \times \boldsymbol{E} = \frac{j}{\omega \mu}(-\boldsymbol{e_x}\frac{\partial E_y}{\partial z} + \boldsymbol{e_y}\frac{\partial E_x}{\partial z}) = \frac{k}{\omega \mu}(-\boldsymbol{e_x}E_{y_0}e^{-jkz}+\boldsymbol{e_y}E_{x_0}e^{-jkz})\nonumber
+    \\
+    &\Rightarrow 
+    \begin{cases}
+        \boldsymbol{H} = \dfrac{1}{\eta}\boldsymbol{e_z}\times \boldsymbol{E}\\
+        \boldsymbol{E} = \eta \boldsymbol{H}\times \boldsymbol{e_z}
+    \end{cases}
+\end{align}
+式中$\eta = \dfrac{\omega \mu}{k} = \sqrt{\dfrac{\mu}{\varepsilon}}$为波阻抗。
+
+以上为理想介质中均匀平面电磁波的推导。总结如下。
+
+（1）理想介质中任意点处的电场解：
+\begin{align}
+    &\textcolor{red}{\boldsymbol{\dot{E}}(z) = \boldsymbol{\dot{E}_0} e^{-jkz}} \mbox{，无时间相位信息}\nonumber \\
+    &\boldsymbol{\dot{E}_0} = \boldsymbol{e_x}\dot{E}_{x_0} + \boldsymbol{e_y}\dot{E}_{y_0}\mbox{ 为原点处电场，无时间相位信息}\nonumber
+\end{align}
+
+（2）理想介质中的磁场解：$\boldsymbol{E}$、$\boldsymbol{H}$、波矢量$\boldsymbol{k}$三者相互垂直。$\boldsymbol{E}$、$\boldsymbol{H}$始终同相位。
+\begin{align}
+    \textcolor{red}{\boldsymbol{\dot{H}} = \dfrac{1}{\eta}\boldsymbol{e_z}\times \boldsymbol{\dot{E}}
+    }
+\end{align}
+
+（3）波阻抗：电场与磁场振幅之比。
+\begin{align}
+    \eta = \frac{E_x}{H_y} = \frac{E_y}{H_x} = \frac{\omega \mu}{k} = \sqrt{\frac{\mu}{\varepsilon}}
+\end{align}
+
+（4）波数：$2\pi$距离上的波长数。
+\begin{align}
+    k = \omega \sqrt{\mu \varepsilon}
+\end{align}
+
+（5）波长：空间相位$kz$变化$2\pi$对应的距离。
+\begin{align}
+    \lambda = \frac{2\pi}{k} = \frac{2\pi}{\omega \sqrt{\mu \varepsilon}} = vT
+\end{align}
+
+（6）相速度：等相位面传播的速度。等于能量传播速度。
+\begin{align}
+    v_p &= \frac{dz}{dt} = \frac{\omega}{k} = \frac{1}{\sqrt{\mu \varepsilon}}\\
+    c &= \frac{1}{\sqrt{\mu_0 \varepsilon_0}}
+\end{align}
+
+（7）平均坡印廷矢量：亦即平均能流密度，光学中称之为光强。在全空间处处相同，表明电磁波在理想介质中的传播没有能量损失。建议从物理直觉上记住该式。
+\begin{align}
+    \textcolor{red}{\boldsymbol{S_{av}} = \frac{1}{2}Re\left\{\boldsymbol{E}\times \boldsymbol{H^*}\right\} = \frac{|E_0|^2}{2\eta}\boldsymbol{e_z}}
+\end{align}
+
+（8）电场能量密度、磁场能量密度的瞬时值：
+\begin{align}
+    &\omega_e(t) = \frac{1}{2}\boldsymbol{D}\cdot \boldsymbol{E} = \frac{1}{2}\varepsilon |E_0|^2 \cos^2(\omega t-kz+\varphi)\\
+    &\omega_m(t) = \frac{1}{2}\boldsymbol{B}\cdot \boldsymbol{H} = \frac{1}{2}\mu |H_0|^2 \cos^2(\omega t-kz+\varphi)
+\end{align}
+
+（9）电场能量密度、磁场能量密度的时间平均值：
+\begin{align}
+    &\omega_{eav} = \frac{1}{4}\boldsymbol{\dot{D}}\cdot \boldsymbol{\dot{E^*}} = \frac{1}{4}\varepsilon |E_0|^2\\
+    &\omega_{mav} = \frac{1}{4}\boldsymbol{\dot{B}}\cdot \boldsymbol{\dot{H^*}} = \frac{1}{4}\mu |H_0|^2
+\end{align}
+
+\subsubsection{导电媒质中的均匀平面波}
+回顾：线性、各向同性、均匀、无界、无源的导电媒质中，场强复矢量的齐次复波动方程（亥姆霍兹方程）：
+\begin{align}
+    \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} + \omega^2 \mu \varepsilon_c \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} + \omega^2 \mu \varepsilon_c \boldsymbol{\dot{H}} = 0
+    \end{cases}
+    \Rightarrow 
+        \begin{cases}
+        \nabla^2 \boldsymbol{\dot{E}} + k^2 \boldsymbol{\dot{E}} = 0 \\
+        \nabla^2 \boldsymbol{\dot{H}} + k^2 \boldsymbol{\dot{H}} = 0
+    \end{cases}
+\end{align}
+式中\textcolor{red}{$\varepsilon_c = \varepsilon - j\dfrac{\gamma}{\omega}$为导电媒质的复介电常数}，\textcolor{red}{$k=\omega \sqrt{\mu \varepsilon_c}=\beta-j\alpha$为复波数}。
+
+导电媒质中的电场解：形式与理想介质相同。
+\begin{align}
+    \textcolor{red}{\boldsymbol{\dot{E}}(z) = \boldsymbol{\dot{E}_0} e^{-jkz} = \boldsymbol{\dot{E}_0} e^{(\alpha-j\beta) z}}
+\end{align}
+
+传播常数：
+\begin{align}
+    \Gamma = jk = \alpha + j\beta
+\end{align}
+
+衰减常数$\alpha$描述振幅随距离的指数衰减，损失的能量转化为导电介质的焦耳热损耗，$\alpha$越大衰减速度越快。相位常数$\beta$描述空间相位。
+\begin{align}
+    &k=\omega \sqrt{\mu \varepsilon_c}=\beta-j\alpha \Rightarrow \omega^2 \mu (\varepsilon - j\dfrac{\gamma}{\omega}) = \beta^2 - \alpha^2 -2j\beta \alpha \nonumber\\
+    &\Rightarrow
+    \begin{cases}
+        \beta^2 - \alpha^2 = \omega^2 \mu \varepsilon\\
+        2\beta \alpha = \omega \mu \gamma
+    \end{cases}
+    \Rightarrow
+    \textcolor{red}{
+    \begin{cases}
+        \alpha = \omega \sqrt{\dfrac{\mu\varepsilon}{2} (\sqrt{1 + \left( \dfrac{\gamma}{\omega\varepsilon} \right)^2} - 1)}\\\
+        \beta = \omega \sqrt{\dfrac{\mu\varepsilon}{2} (\sqrt{1 + \left( \dfrac{\gamma}{\omega\varepsilon} \right)^2} + 1)}
+    \end{cases}}
+\end{align}
+
+复波阻抗：$\boldsymbol{E}$和$\boldsymbol{H}$不再同相，磁场滞后于电场$\theta$角。
+\begin{align}
+    \textcolor{red}{\eta_c = \sqrt{\frac{\mu}{\varepsilon_c}} = |\eta_c| e^{j\theta}}
+\end{align}
+
+相速度：等相位面传播的速度。一般等于能量传播速度。
+\begin{align}
+    \textcolor{red}{v_p = \frac{\omega}{\beta}}
+\end{align}
+
+波长：空间相位$kz$变化$2\pi$对应的距离。
+\begin{align}
+    \textcolor{red}{\lambda = \frac{2\pi}{\beta}}
+\end{align}
+
+平均坡印廷矢量：亦即平均功率流密度。
+\begin{align}
+    S_{av} = e_z \frac{|E_0|^2}{2|\eta_c|} e^{-2\alpha z} \cos\theta
+\end{align}
+
+以上传播特性的两种极端情况近似：
+
+（1）\textcolor{red}{良介质：损耗角正切值$\dfrac{\gamma}{\omega \varepsilon}<10^{-2}$}，取近似$\sqrt{1 + \left( \dfrac{\gamma}{\omega\varepsilon} \right)^2} - 1 \approx \dfrac{1}{2}\left( \dfrac{\gamma}{\omega\varepsilon} \right)^2$。
+\begin{align}
+    \begin{cases}
+        \alpha \approx \dfrac{\gamma}{2}\sqrt{\dfrac{\mu}{\varepsilon}} ,\quad \beta \approx \omega \sqrt{\mu \varepsilon}, \quad v_p =   \dfrac{\omega}{\beta} \approx \dfrac{1}{\sqrt{\mu \varepsilon}}\\
+        \lambda = v_p T \approx \dfrac{1}{f\sqrt{\mu \varepsilon}}, \quad \eta_c = \sqrt{\dfrac{\mu}{\varepsilon_c}} \approx \sqrt{\dfrac{\mu}{\varepsilon}}
+    \end{cases}
+\end{align}
+
+（2）\textcolor{red}{良导体：损耗角正切$\dfrac{\gamma}{\omega \varepsilon}>100$}，取近似$\sqrt{1 + \left( \dfrac{\gamma}{\omega\varepsilon} \right)^2} - 1 \approx \dfrac{\gamma}{\omega\varepsilon}$。
+\begin{align} 
+    \begin{cases}
+        \alpha \approx \beta \approx \sqrt{\dfrac{\omega \mu \gamma}{2}}, v_p = \dfrac{\omega}{\beta} \approx \sqrt{\dfrac{2\omega}{\mu\gamma}}\\
+        \lambda = \dfrac{v_p}{f} \approx 2\sqrt{\dfrac{\pi}{f\mu\gamma}}, \quad \eta_c = \sqrt{\dfrac{\mu}{\varepsilon_c}} \approx \sqrt{\dfrac{\omega\mu}{\gamma}}e^{j\frac{\pi}{4}}=(1+j)\dfrac{\pi f \mu}{\gamma}
+    \end{cases}
+\end{align}
+
+\subsubsection{沿任意方向传播的均匀平面波}
+波矢量：表示波传播方向和波数的矢量。
+\begin{align}
+    &\boldsymbol{k} = k\boldsymbol{e_n} = k_x\boldsymbol{e_x}+k_y\boldsymbol{e_y}+k_z\boldsymbol{e_z}\\
+    &\mbox{波矢量模长：}|\boldsymbol{k}| = k = \omega \sqrt{\mu \varepsilon}\\
+    &\mbox{波矢量方向向量：}\boldsymbol{e_n}=\cos\alpha\cdot \boldsymbol{e_x}+\cos\beta\cdot \boldsymbol{e_y}+\cos\gamma\cdot \boldsymbol{e_z}
+\end{align}
+
+波矢量的模长即复波数$k$，其性质已有解释。电磁波是横波，波矢量的方向向量$\boldsymbol{e_n}$有如下性质：与$\boldsymbol{E}$、$\boldsymbol{H}$的振动方向均垂直。三者的相互关系如下：
+\begin{align}
+    &\boldsymbol{k} \times \boldsymbol{E} = \omega \mu \boldsymbol{H},\quad \boldsymbol{k} \times \boldsymbol{H} = -\omega \varepsilon \boldsymbol{E}\\
+    &\textcolor{red}{\boldsymbol{k} \cdot \boldsymbol{E} = 0,\quad \boldsymbol{k} \cdot \boldsymbol{H} = 0}\\
+    &\textcolor{red}{\boldsymbol{H} = \frac{1}{\eta}\boldsymbol{e_n}\times \boldsymbol{E},\quad \boldsymbol{E} = \eta \boldsymbol{H}\times \boldsymbol{e_n}},\quad \boldsymbol{e_n}=\frac{\boldsymbol{k}}{k}
+\end{align}
+
+沿任意方向传播的均匀平面电磁波的任意点处场矢量：
+\begin{align}
+    \textcolor{red}{
+    \begin{cases}
+        \boldsymbol{\dot{E}}(\boldsymbol{r}) = \boldsymbol{\dot{E}_0} e^{-j\boldsymbol{k}\cdot \boldsymbol{r}}\\
+        \boldsymbol{\dot{H}}(\boldsymbol{r}) = \boldsymbol{\dot{H}_0} e^{-j\boldsymbol{k}\cdot \boldsymbol{r}} 
+    \end{cases}
+    }
+\end{align}
+式中$\boldsymbol{k}\cdot \boldsymbol{r} = const$为等相位面。
+
+\subsubsection{电磁波的极化}
+
+极化：空间中某点处，电场强度矢量$\boldsymbol{E}(\boldsymbol{r}, t)$的端点随时间变化的轨迹。
+
+设电磁波沿z轴正向传播，方向向量满足$\boldsymbol{e_x}\times \boldsymbol{e_y} = \boldsymbol{e_z}$。
+
+（1）\textcolor{red}{线极化：$\varphi_x - \varphi_y = 0 \ or\ \pi$}，此时$E_x$和$E_y$分量同相或反相，轨迹为线段。
+
+（2）圆极化：$E_x$和$E_y$分量振幅相等，且相位差$\varphi_x - \varphi_y = \pm \dfrac{\pi}{2}$。
+
+\textcolor{red}{右旋圆极化：$\varphi_x - \varphi_y = \dfrac{\pi}{2}$}。
+
+\textcolor{red}{左旋圆极化：$\varphi_x - \varphi_y = -\dfrac{\pi}{2}$}。
+
+（3）椭圆极化：最一般的情况。振幅不等或相位差不为特殊值。轨迹为一个椭圆。
+
+\subsubsection{相速、群速与色散}
+
+色散：波在介质内传播的相速度$v_p$随频率变化的现象。存在色散的媒质称为色散媒质。
+
+相速：单频波等相面的传播速度。
+\begin{align}
+    \textcolor{red}{v_p = \frac{\omega}{Re\left\{k\right\}} = \frac{\omega}{\beta}}
+\end{align}
+
+群速：由多个频率分量（一般为频率带）组成的波前包络的传播速度，代表能量或信息的传播速度。只有波群作为一个整体传播，并且传播过程中波前变形足够慢时，才有意义。
+\begin{align}
+    \textcolor{red}{v_g = \frac{d\omega}{d\beta}}
+\end{align}
+
+能速：定义为平均坡印亭矢量与时间平均能量密度之比，表示每单位时间内时均电磁能量传送的距离和方向。能速永远不会超过光速。
+\begin{align}
+    \textcolor{red}{\boldsymbol{v_e} = \frac{\boldsymbol{S_{av}}}{\omega_{av}}}
+\end{align}
+
+相速与群速的关系：
+\begin{align}
+    v_g = \frac{v_p}{1 - \dfrac{\omega}{v_p} \dfrac{dv_p}{d\omega}} = v_p - \lambda \dfrac{dv_p}{d\lambda}
+\end{align}
+
+\textcolor{red}{无色散介质：各频率分量的相速都等于群速、能速$\dfrac{dv_p}{d\omega} = 0 \Rightarrow v_g = v_p = v_e$}。
+
+\textcolor{red}{正常色散：相速随频率增大而减小$\dfrac{dv_p}{d\omega} < 0 \Rightarrow v_g < v_p$，能速等于相速$v_e = v_g$}。
+
+\textcolor{red}{反常色散：相速随频率增大而增大$\dfrac{dv_p}{d\omega} > 0 \Rightarrow v_g > v_p$，能速不等于相速$v_e \neq v_g$}。
+
+\subsubsection{均匀平面波对平面分界面的垂直入射}
+设波从媒质1（波阻抗为$\eta_1$）垂直入射到媒质2（波阻抗为$\eta_2$）。
+
+垂直入射条件下的反射系数（Reflection Coefficient）与透射系数（Transmission Coefficient）：利用电磁场的边界条件（切向场连续）可以解得
+\begin{align}
+    &\textcolor{red}{R = \frac{\mbox{反射波电场的复振幅}}{\mbox{入射波电场的复振幅}} = \frac{E_{r0}}{E_{i0}} = \frac{\eta_2 - \eta_1}{\eta_2 + \eta_1}}\\
+    &\textcolor{red}{T = \frac{\mbox{透射波电场的复振幅}}{\mbox{入射波电场的复振幅}} = \frac{E_{t0}}{E_{i0}} = \frac{2\eta_2}{\eta_2 + \eta_1}} = 1 + R
+\end{align}
+它们是菲涅尔反射折射公式在$\theta_i=\theta_t=0$情况下的特例。
+
+可以证明：反射波与透射波的功率流密度之和等于入射波的功率流密度，能量守恒定律成立。
+\begin{align}
+    S_{avi} = S_{avr} + S_{avt} 
+    \Leftrightarrow 
+    \frac{|E_{i0}|^2}{2\eta_1} = \frac{|R\cdot E_{i0}|^2}{2\eta_1}+\frac{|T\cdot E_{i0}|^2}{2\eta_2}
+\end{align}
+
+半波损失：当$\eta_2<\eta_1$时，$R$为负实数，表示$E_{i0}$与$E_{r0}$反相，$z=0$处反射波与入射波的波形有相位差$\Delta \varphi = \pi$。
+
+行波：指平面波在传输线上的向前传播。
+
+驻波：波形在空间中的特定位置保持不变，不像行波那样传播。驻波的形成通常是由于频率、振幅相同，但传播方向相反的两列波相叠加，导致波节点始终保持静止，而波腹点振动幅度最大。
+
+媒质1中的合成波（驻波） = 入射波（行波）+反射波（行波）。
+
+驻波比$SWR$：完全驻波$SWR=\infty$。完全行波$SWR=1$。
+\begin{align}
+    \textcolor{red}{\rho = \frac{\mbox{波腹点上电场的振幅}}{\mbox{波节点上电场的振幅}} = \frac{|E|_{max}}{|E|_{min}}= \frac{1 + |R|}{1 - |R|}}
+\end{align}
+
+全反射：若媒质2是$\eta_2 = 0$的理想导体，则反射系数$R=-1, T=0$，合成纯驻波，在反射界面处电场恰为波节$|E|_{min}=0$，磁场恰为波腹$|H|_{max}$。\cite{电磁场仿真动图}
+
+趋肤深度：入射良导体，导体内部传播时有损耗。定义趋肤深度位振幅衰减到原来的$\dfrac{1}{e}$时的传播距离。
+\begin{align}
+    e^{-\alpha \delta} = \frac{1}{e}, \quad \delta = \frac{1}{\alpha}
+\end{align}
+
+对于良导体$\eta_2\ll \eta_1, \ T = \dfrac{2\eta_2}{\eta_2 + \eta_1} \approx \dfrac{2\eta_2}{\eta_1}$，透射波磁场的复振幅近似等于入射波磁场复振幅的2倍。
+\begin{align}
+    H_{t0} = \frac{\eta_1}{\eta_2} T \cdot H_{i0} 
+\end{align}
+
+垂直入射良导体时，导体的表面阻抗等于波阻抗。表面电阻的大小$R_s$等于表面电抗$X_s$。
+\begin{align}
+    Z_s = \frac{U}{I} = \eta_1 = R_s + jX_s\\
+    R_s = X_s = \sqrt{\frac{\omega \mu}{2\gamma}} = \frac{1}{\gamma \delta}
+\end{align}
+
+\subsubsection{均匀平面波对平面分界面的斜入射}
+波矢量$\boldsymbol{k}$与界面法线成$\theta_i$角入射。
+
+反射定律与折射定律：
+\begin{align}
+    &\theta_i = \theta_r\\
+    &\frac{\sin\theta_i}{\sin\theta_t} = \frac{k_r}{k_i} =\frac{\sqrt{\mu_2 \varepsilon_2}}{\sqrt{\mu_1 \varepsilon_1}} =\frac{n_2}{n_1}
+\end{align}
+
+将入射波分解为两个独立分量：
+
+电场$\boldsymbol{E}$垂直于入射面（$\boldsymbol{n},\boldsymbol{k}$所在平面）的分量为垂直极化波/s分量波/TM波，电场$\boldsymbol{E}$平行于入射面的分量为平行极化波/p分量波/TM波。s和p分别取自德文senkrecht（垂直）和parallel（平行）两字的字头。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{figures/电磁场与电磁波_菲涅尔定理.png}
+\caption{菲涅尔定理}
+\label{fig:菲涅尔定理}
+\end{figure}
+
+s分量波的反射系数和透射系数：定义为入射光与反射光、折射光在s分量上电场复振幅的比例系数。非磁性媒质中波阻抗与折射率的倒数成正比$\eta = \sqrt{\dfrac{\mu_0}{\varepsilon}}, \ \textcolor{red}{n = \sqrt{\mu_r \varepsilon_r}} = \sqrt{\varepsilon_r}$，所以也可以用折射率表示。
+\begin{align}
+    \textcolor{red}{R_s = \frac{\eta_2 \cos\theta_i - \eta_1 \cos\theta_t}{\eta_2 \cos\theta_i + \eta_1 \cos\theta_t}} \xlongequal{\mu_1=\mu_2} \frac{n_1 \cos\theta_i - n_2 \cos\theta_t}{n_1 \cos\theta_i + n_2 \cos\theta_t} \\
+    \textcolor{red}{T_s = \frac{2\eta_2 \cos\theta_i}{\eta_2 \cos\theta_i + \eta_1 \cos\theta_t}} \xlongequal{\mu_1=\mu_2} \frac{2n_1 \cos\theta_i}{n_1 \cos\theta_i + n_2 \cos\theta_t}
+    \label{s波的菲涅尔反射折射公式}
+\end{align}
+
+p分量波的反射系数和透射系数：定义为入射光与反射光、折射光在p分量上电场复振幅的比例系数。
+\begin{align}
+    \textcolor{red}{R_p = \frac{\eta_1 \cos\theta_i - \eta_2 \cos\theta_t}{\eta_1 \cos\theta_i + \eta_2 \cos\theta_t}}\\
+    \textcolor{red}{T_p = \frac{2\eta_2 \cos\theta_i}{\eta_1 \cos\theta_i + \eta_2 \cos\theta_t}}
+    \label{p波的菲涅尔反射折射公式}
+\end{align}
+
+全反射：当从光密介质射向光疏介质$\varepsilon_1>\varepsilon_2$，且入射角大于临界角时，发生全反射，此时所有能量被反射回媒质1，媒质2中只存在沿界面传播的表面波，不传递能量。
+
+全反射临界角$\theta_c$：
+\begin{align}
+    \textcolor{red}{\theta_c = \arcsin\left( \frac{n_2}{n_1} \right)}
+\end{align}
+
+布儒斯特角/全偏振角/起偏角$\theta_B$：当光束以布儒斯特角入射，即$\theta_i=\theta_B$时，p分量波的反射系数$R_p=0$，反射波只有s分量。
+
+如果入射波只有p分量，则发生全折射，反射波消失。无论入射光的偏振态如何（例如自然光），反射光总是线偏振光，折射光的偏振度也会同样提高，这一点可用于产生线极化波。菲涅尔定理可推出：\cite{教材2}
+\begin{align}
+    \textcolor{red}{\theta_B = \arctan\left( \frac{n_2}{n_1} \right)}
+\end{align}
+
+特殊地，在非磁性介质中，磁导率近似为真空磁导率$\mu_1,\mu_2\approx \mu_0$，故有
+\begin{align}
+    \theta_B = \arctan \sqrt{\frac{\varepsilon_2}{\varepsilon_1}}
+\end{align}
+
+\section{写在最后}
+华科的《电磁场与电磁波》课程教材很厚，但实际理论知识量并没有太大：所有内容皆以Maxwell方程组为核心。所谓静电场、恒定磁场、时变电磁场、均匀平面电磁波，都是Maxswell方程组在各种条件下的特例。无论是学习还是复习，都需要抓住Maxwell方程组主线，再辅以对基本概念（如：自由电流、极化电流、传导电流、运流电流、磁化电流的这些概念的定义）、基本公式、基本定律的物理意义的理解。
+
+做题也是修正知识理解的必要手段。做题时，优先做能找到标准答案的题目，例如课件例题、教材例题、课后习题。
+
+祝学习开心，考试顺利喵$\sim$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=11cm]{figures/从没觉得学电信开心过.jpeg}
+\end{figure}
+
+\begin{thebibliography}{9}
+    \bibitem[1]{电磁场仿真动图}
+    基于Matlab的电磁波入射、反射、透射仿真. \url{https://blog.csdn.net/qq_55710894/article/details/123918834}
+
+    \bibitem[2]{教材1}
+    沈熙宁.
+    \newblock 电磁场与电磁波.
+    \newblock 北京：科学出版社，2006.
+
+    \bibitem[3]{教材2}
+    赵凯华.
+    \newblock 新概念物理教程，光学.
+    \newblock 北京：高等教育出版社，2004.11.
+\end{thebibliography}
+
+\end{document}     
